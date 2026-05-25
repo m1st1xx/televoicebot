@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: transcription_bot
+    restart: always
+    volumes:
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - EU=Europe/Moscow
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - bot_network
+
+networks:
+  bot_network:
+    name: bot_network
+    driver: bridge
