@@ -7,6 +7,7 @@ from config.config import config
 from handlers import voice, video, audio, style
 from loguru import logger
 from handlers.callback_handler import router as callback_router
+from handlers.register import router as register_router
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -24,6 +25,7 @@ async def main():
     dp.include_router(audio.router)
     dp.include_router(style.router)
     dp.include_router(callback_router)
+    dp.include_router(register_router)
     
     # Start polling
     logger.info("Starting bot...")
