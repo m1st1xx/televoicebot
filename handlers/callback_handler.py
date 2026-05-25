@@ -3,7 +3,8 @@ from aiogram.types import CallbackQuery
 
 from utils.temp_storage import pending_transcriptions
 from services.google_sheets_service import save_transcription
-
+from services.task_parser import parse_tasks
+from services.database import get_employee
 
 router = Router()
 
@@ -30,6 +31,24 @@ async def confirm_transcription(
                 username=username,
                 text=text
             )
+            tasks = parse_tasks(text)
+
+            for item in tasks:
+
+                employee = get_employee(
+                    item["name"]
+                )
+
+                if employee:
+                    telegram_id, username = employee
+
+                    await callback.bot.send_message(
+                        telegram_id,
+                        (
+                            "📌 Новая задача\n\n"
+                            f"{item['task']}"
+                        )
+                    )
 
             del pending_transcriptions[user_id]
 
