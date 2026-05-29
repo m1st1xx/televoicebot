@@ -3,7 +3,7 @@ from aiogram.types import CallbackQuery
 from aiogram.filters import Command
 from utils.temp_storage import pending_transcriptions
 from services.google_sheets_service import save_transcription
-from services.task_parser import parse_tasks
+from services.task_parser import extract_tasks
 from services.database import get_employee
 
 router = Router()
@@ -36,7 +36,7 @@ async def confirm_transcription(
                 username=username,
                 text=text
             )
-            tasks = parse_tasks(text)
+            tasks = extract_tasks(text)
 
             for item in tasks:
 
