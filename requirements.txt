@@ -8,3 +8,10 @@ anthropic>=0.18.1
 certifi>=2023.11.17
 gspread
 google-auth
+natasha
+pymorphy2
+razdel
+navec
+slovnet
+yargy
+ipymarkup
