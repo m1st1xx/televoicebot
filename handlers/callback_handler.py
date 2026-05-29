@@ -1,12 +1,17 @@
 from aiogram import Router
 from aiogram.types import CallbackQuery
-
+from aiogram.filters import Command
 from utils.temp_storage import pending_transcriptions
 from services.google_sheets_service import save_transcription
 from services.task_parser import parse_tasks
 from services.database import get_employee
 
 router = Router()
+
+@router.message(Command('start'))
+
+async def start(message):
+    await message.answer("Это бот который умеет переводить\n аудио в текст и добавлять задачи в гугл таблицу")
 
 
 @router.callback_query()
