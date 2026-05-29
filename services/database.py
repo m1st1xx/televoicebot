@@ -25,6 +25,6 @@ def add_employee(name,telegram_id,username):
 def get_employee(name):
     cursor.execute("""
     SELECT telegram_id,username
-    FORM employees
+    FROM employees
     WHERE name =?""",(name.lower(),))
     return cursor.fetchone()
