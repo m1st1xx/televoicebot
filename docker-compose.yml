@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:
       - ./logs:/app/logs
-      - .employees.db:/app/employees.db
+      - ./employees.db:/app/employees.db
     env_file:
       - .env
     environment:
