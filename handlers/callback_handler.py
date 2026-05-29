@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import CallbackQuery
 from aiogram.filters import Command
-from utils.temp_storage import pending_transcriptions
+from utils.temp_storage import (pending_transcriptions, editing_users)
 from services.google_sheets_service import save_transcription
 from services.task_parser import extract_tasks
 from services.database import get_employee
@@ -60,6 +60,26 @@ async def confirm_transcription(
             await callback.message.edit_text(
                 "✅ Текст сохранён в Google Sheets по ссылке:\n https://docs.google.com/spreadsheets/d/15sV58mArsQq-e_pgBWxXCQbNGyhCiC5c0xLWLSlPHP8/edit?hl=ru&gid=0#gid=0"
             )
+    elif callback.data == "edit_text":
+
+        text = pending_transcriptions.get(user_id)
+
+        if not text:
+            await callback.answer(
+                "Текст не найден"
+            )
+
+            return
+
+        editing_users.add(user_id)
+
+        await callback.message.answer(
+            (
+                "✏️ Отредактируйте текст "
+                "и отправьте его сообщением:\n\n"
+                f"{text}"
+            )
+        )
 
     elif callback.data == "confirm_no":
 

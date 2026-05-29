@@ -78,6 +78,10 @@ async def handle_voice(message: Message):
                     InlineKeyboardButton(
                         text="❌ Нет",
                         callback_data="confirm_no"
+                    ),
+                    InlineKeyboardButton(
+                        text="❌ Отмена",
+                        callback_data="confirm_no"
                     )
                 ]
             ]
