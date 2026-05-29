@@ -1,10 +1,10 @@
 import _sqlite3
 
 
-conn = _sqlite3.connect("employees.db")
+conn = _sqlite3.connect("/app/employees.db")
 cursor = conn.cursor()
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS employess(
+CREATE TABLE IF NOT EXISTS employees(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE,
     telegram_id INTEGER,
