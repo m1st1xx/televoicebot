@@ -8,19 +8,13 @@ CREATE TABLE IF NOT EXISTS employees(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE,
     telegram_id INTEGER,
-    username TEXT)
+    username TEXT,
+    google_sheet_id TEXT)
     """)
 
 conn.commit()
 
-try:
-    cursor.execute("""
-    ALTER TABLE employees
-    ADD COLUMN google_sheet_id TEXT
-    """)
-    conn.commit()
-except sqlite3.OperationalError:
-    pass
+
 
 def add_employee(name,telegram_id,username):
     cursor.execute("""
