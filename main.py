@@ -30,8 +30,7 @@ async def main():
     dp.include_router(audio.router)
     dp.include_router(style.router)
     dp.include_router(callback_router)
-    dp.include_router(register_router)
-    dp.include_router(edit_router)
+
 
 
     # Start polling
