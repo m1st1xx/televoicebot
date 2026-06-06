@@ -8,11 +8,6 @@ from services.database import get_employee
 
 router = Router()
 
-@router.message(Command('start'))
-
-async def start(message):
-    await message.answer("Это бот который умеет переводить\n аудио в текст и добавлять задачи в гугл таблицу")
-
 
 @router.callback_query()
 async def confirm_transcription(
