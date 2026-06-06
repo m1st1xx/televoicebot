@@ -23,6 +23,8 @@ async def main():
     dp = Dispatcher()
     
     # Register routers
+    dp.include_router(connect_router)
+    dp.include_router(connect_sheet_link_router)
     dp.include_router(voice.router)
     dp.include_router(video.router)
     dp.include_router(audio.router)
@@ -30,8 +32,7 @@ async def main():
     dp.include_router(callback_router)
     dp.include_router(register_router)
     dp.include_router(edit_router)
-    dp.include_router(connect_router)
-    dp.include_router(connect_sheet_link_router)
+
 
     # Start polling
     logger.info("Starting bot...")
