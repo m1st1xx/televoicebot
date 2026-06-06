@@ -37,7 +37,7 @@ def get_employee(name):
     WHERE name =?""",(name.lower(),))
     return cursor.fetchone()
 
-def update_sheet_id(telegram_id,google_sheet_id):
+def update_sheet(telegram_id,google_sheet_id):
     cursor.execute("""
         UPDATE employees
         SET google_sheet_id = ?
