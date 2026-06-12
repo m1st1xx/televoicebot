@@ -27,7 +27,6 @@ async def main():
     dp.include_router(connect_sheet_link_router)
     dp.include_router(register_router)
     dp.include_router(edit_router)
-    dp.include_router(connect_router)
     dp.include_router(voice.router)
     dp.include_router(video.router)
     dp.include_router(audio.router)
